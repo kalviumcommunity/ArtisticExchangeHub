@@ -13,3 +13,5 @@ Day 1: Create and initialize a git repository for the project
 Day 2: Create a low-fid figma design
 
 Day 3: Create a high-fid figma design
+
+
