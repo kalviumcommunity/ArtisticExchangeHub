@@ -3,7 +3,7 @@ import '../home/Home.css'
 import backgroundImage from '../img/background.png'
 import logo from '../img/logo.png'
 
-function Home() {
+function Home   () {
     return (
       <div className="container">
         {/* <img src={backgroundImage} alt="Background" className="background-image" /> */}
@@ -50,4 +50,4 @@ function Home() {
     );
   }
   
-  export default Home;
+  export default Home   ;
