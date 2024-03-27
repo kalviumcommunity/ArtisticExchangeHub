@@ -20,16 +20,15 @@ router.get('/db',async (req,res)=>{
     res.send(status)
 })
 
-router.get('/art',async(req,res)=>{
-    try{
-        const arts = await artmodle.find({})
-        console.log(arts)
-        res.status(200).send(arts)
-    }catch(err){
-        res.status(401).send('error fetching data',err)
+router.get('/art', async (req, res) => {
+    try {
+        const arts = await artmodle.find({});
+        console.log(arts);
+        res.status(200).send(arts);
+    } catch (err) {
+        res.status(401).send({ error: 'Error fetching data', details: err });
     }
-   
-})
+});
 
 
 module.exports = router
