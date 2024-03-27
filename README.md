@@ -15,6 +15,6 @@ Day 2: Create a low-fid figma design
 Day 3: Create a high-fid figma design
 
 
-**Deploy link:**
+`**Deploy link:**`
 
 https://client-teal-ten.vercel.app/
