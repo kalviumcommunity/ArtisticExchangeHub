@@ -15,6 +15,10 @@ Day 2: Create a low-fid figma design
 Day 3: Create a high-fid figma design
 
 
-**Deploy link:**
+**Frontend-Deploy link:**
 
 https://client-teal-ten.vercel.app/
+
+**Backend-Deploy link:**
+
+https://s55-omjadhav-capstone-artisticexchangehub.onrender.com
