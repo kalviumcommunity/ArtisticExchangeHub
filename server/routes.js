@@ -3,7 +3,6 @@ const router = express.Router()
 require('dotenv').config()
 const mongoose = require('mongoose')
 const {getConnectionStatus} = require('./db.js')
-const artHub = require('./art.js')
 const {artmodle} = require('./schema.js')
 router.use(express.json());
 
