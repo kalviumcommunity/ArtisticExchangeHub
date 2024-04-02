@@ -5,6 +5,7 @@ import logo from '../img/logo.png'
 import '../home/nav.css'
 import '../home/container2.css'
 import '../home/container3.css'
+import '../home/container4.css'
 import category1 from '../img/D1.jpeg'
 import category2 from '../img/D2.jpeg'
 import category3 from '../img/D3.jpeg'
@@ -15,6 +16,8 @@ import profile1 from '../img/P1.jpeg'
 import profile2 from '../img/P2.jpeg'
 import profile3 from '../img/P3.jpeg'
 import profile4 from '../img/P4.jpeg'
+import popularart from '../img/container4.png'
+import artistphoto from '../img/popularartist.png'
 
 function Home() {
     return (
@@ -91,7 +94,7 @@ function Home() {
 
 
                 </div>
-                <div className="container3">
+                <div classfName="container3">
                     <div className="section-select">Artist Profile</div>
                     <div className="card-list">
                         <a href="#" className="card-item">
@@ -101,7 +104,7 @@ function Home() {
                             <div className="arrow">
                                 <i className="fas fa-arrow-right card-icon"></i>
                             </div>
-                                <button className="view">View</button>
+                            <button className="view">View</button>
                         </a>
                         <a href="#" className="card-item">
                             <img src={profile2} alt="Card Image" />
@@ -134,6 +137,30 @@ function Home() {
 
 
                 </div>
+                <div className="container4">
+                    <div>
+                        <img className="popular" src={popularart} alt="" />
+
+                    </div>
+                    <div className="details">
+
+                    <div >
+                        <p className="featured">FEATURED ARTISTS</p>
+
+                    </div>
+                    <div>
+                        <img className="artistP" src={artistphoto} alt="" />
+                    </div>
+                    <div className="all-info">
+                        <p className="name-C" ><b>creator:</b> Christine Flynn </p>
+                        <p className="descp">From the depths of shadow, a silver vessel erupts in a kaleidoscope of colorful blossoms.</p>
+                    </div>
+                    </div>
+                </div>
+                <div className="container5">
+                    
+                </div>
+
             </div>
         </div>
     );

@@ -148,6 +148,7 @@
 
         grid-template-columns: repeat(auto-fill, minmax(300px, 0.9fr));
     }
+    
      
 }
 /* demo */
@@ -188,8 +189,15 @@
     
     } */
     .view{
-        height: 4vw;
+        height: 4vh;
+        font-size: 2vw;
+
     }
+    .section-select{
+        font-size: 3vw;
+    }
+
+    
      
 
 }

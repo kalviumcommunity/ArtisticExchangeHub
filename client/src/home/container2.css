@@ -75,8 +75,12 @@
 
 
 
+@media only screen and (min-width : 150px) and (max-width : 780px) {
+    .C-name{
+        font-size: 2vw;
+    }
 
-
+}
 
 
 
