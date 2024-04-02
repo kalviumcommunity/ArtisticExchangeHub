@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './signu.css';
+// import signinimg from '../img/P1.jpeg'
 
 const Signup = () => {
     const [isSignIn, setIsSignIn] = useState(true);
@@ -98,11 +99,12 @@ const Signup = () => {
                 <div className="col align-items-center flex-col">
                     <div className="text sign-in">
                         <h2>
-                            Welcome
+                            Welcome 
                         </h2>
                     </div>
                     <div className="img sign-in">
                         {/* Sign in image or content */}
+                        {/* <img src={signinimg} alt="" /> */}
                     </div>
                 </div>
                 {/* END SIGN IN CONTENT */}
@@ -110,6 +112,7 @@ const Signup = () => {
                 <div className="col align-items-center flex-col">
                     <div className="img sign-up">
                         {/* Sign up image or content */}
+                        {/* <img src={signinimg} alt="" /> */}
                     </div>
                     <div className="text sign-up">
                         <h2>

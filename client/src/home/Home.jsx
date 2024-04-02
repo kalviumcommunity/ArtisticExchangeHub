@@ -144,21 +144,21 @@ function Home() {
                     </div>
                     <div className="details">
 
-                    <div >
-                        <p className="featured">FEATURED ARTISTS</p>
+                        <div >
+                            <p className="featured">FEATURED ARTISTS</p>
 
-                    </div>
-                    <div>
-                        <img className="artistP" src={artistphoto} alt="" />
-                    </div>
-                    <div className="all-info">
-                        <p className="name-C" ><b>creator:</b> Christine Flynn </p>
-                        <p className="descp">From the depths of shadow, a silver vessel erupts in a kaleidoscope of colorful blossoms.</p>
-                    </div>
+                        </div>
+                        <div>
+                            <img className="artistP" src={artistphoto} alt="" />
+                        </div>
+                        <div className="all-info">
+                            <p className="name-C" ><b>creator:</b> Christine Flynn </p>
+                            <p className="descp">From the depths of shadow, a silver vessel erupts in a kaleidoscope of colorful blossoms.</p>
+                        </div>
                     </div>
                 </div>
                 <div className="container5">
-                    
+
                 </div>
 
             </div>
