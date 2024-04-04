@@ -4,9 +4,11 @@ require('dotenv').config()
 const mongoose = require('mongoose')
 const {getConnectionStatus} = require('./db.js')
 const {artmodle} = require('./schema.js')
+const {User}= require('./userschema.js')
 router.use(express.json());
 
-const cors = require('cors')
+const cors = require('cors');
+// const User = require('./userschema.js');
 router.use(cors())
 
 router.get('/server',(req,res)=>{
@@ -31,7 +33,7 @@ router.get('/art', async (req, res) => {
 
 router.post('/signup',async(req,res)=>{
     try{
-        const user = await model.create({
+        const user = await User.create({
             username:req.body.username,
             password:req.body.password
         })
@@ -43,14 +45,12 @@ router.post('/signup',async(req,res)=>{
 })
 router.post('/login', async (req, res) => {
     try {
-        const { username, password } = req.body;
-        const user = await model.findOne({ username, password });
+        const { username, email, password } = req.body;
+        const user = await User.findOne({ username , email,password});
         
         if (!user) {
             return res.status(401).json({ error: 'Invalid username / password' });
         }
-
-        
         res.status(200).json({ user });
         
     } catch (err) {

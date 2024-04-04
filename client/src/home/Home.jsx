@@ -1,63 +1,52 @@
 import React from "react";
-import '../home/Home.css'
-import backgroundImage from '../img/background.png'
-import logo from '../img/logo.png'
-import '../home/nav.css'
-import '../home/container2.css'
-import '../home/container3.css'
-import '../home/container4.css'
-import category1 from '../img/D1.jpeg'
-import category2 from '../img/D2.jpeg'
-import category3 from '../img/D3.jpeg'
-import category4 from '../img/D4.jpeg'
-import category5 from '../img/D5.jpeg'
-import category6 from '../img/D6.jpeg'
-import profile1 from '../img/P1.jpeg'
-import profile2 from '../img/P2.jpeg'
-import profile3 from '../img/P3.jpeg'
-import profile4 from '../img/P4.jpeg'
-import popularart from '../img/container4.png'
-import artistphoto from '../img/popularartist.png'
+import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
+import '../home/Home.css';
+import backgroundImage from '../img/background.png';
+import logo from '../img/logo.png';
+import '../home/nav.css';
+import '../home/container2.css';
+import '../home/container3.css';
+import '../home/container4.css';
+import category1 from '../img/D1.jpeg';
+import category2 from '../img/D2.jpeg';
+import category3 from '../img/D3.jpeg';
+import category4 from '../img/D4.jpeg';
+import category5 from '../img/D5.jpeg';
+import category6 from '../img/D6.jpeg';
+import profile1 from '../img/P1.jpeg';
+import profile2 from '../img/P2.jpeg';
+import profile3 from '../img/P3.jpeg';
+import profile4 from '../img/P4.jpeg';
+import popularart from '../img/container4.png';
+import artistphoto from '../img/popularartist.png';
 
 function Home() {
+    const navigate = useNavigate(); // Use useNavigate for navigation
+
     return (
         <div>
-
             <div className="container1">
-
                 <header>
-                    {/* <img src={logo} alt="" /> */}
                     <a href="#" className="logo">A R T I Q U E '</a>
                     <nav className="navbar">
                         <a className="active" href="#home">Home</a>
-                        <a href=".container3">Art</a>
-                        <a href=".main-container ">Search</a>
-                        <a href=".main-container ">Gallery</a>
-                        <a href="# ">Review</a>
-                        <a href="# ">Order</a>
+                        <a href="">Art</a>
+                        <a href="">Search</a>
+                        <a href="">Gallery</a>
+                        <a href="">Review</a>
+                        <a href="">Order</a>
                     </nav>
                     <div className="icons">
-                        {/* <i className="fa fa-bars" id="menu-bars"></i> */}
-                        <i href="#" className="fa fa-sign-in" id=""></i>
+                        <i href="#" className="fa fa-sign-in" onClick={() => navigate('/signup')} id=""></i> {/* Use navigate for navigation */}
                         <i className="fa fa-user" id="search-icon"></i>
                         <i href="#" className="fa fa-shopping-cart"></i>
                     </div>
-                    {/* <div>
-
-                <button className="button1">login</button>
-                <button className="button2">Sign up</button>
-            </div> */}
                 </header>
                 <div className="title">
-
-
                     <div className="invest">INVEST IN ART THAT SPEAKS TO YOU.</div>
-
-
-                    <button className="title-button">
+                    <button className="title-button" onClick={() => navigate('/')}>
                         <p className="getstart">GET STARTED</p>
                     </button>
-
                 </div>
             </div>
             <div className="main-container">
@@ -89,12 +78,9 @@ function Home() {
                             <img className="C6" src={category6} alt="" />
                             <p className="C-name">Thread</p>
                         </div>
-
                     </div>
-
-
                 </div>
-                <div classfName="container3">
+                <div className="container3">
                     <div className="section-select">Artist Profile</div>
                     <div className="card-list">
                         <a href="#" className="card-item">
@@ -134,19 +120,14 @@ function Home() {
                             <button className="view">View</button>
                         </a>
                     </div>
-
-
                 </div>
                 <div className="container4">
                     <div>
                         <img className="popular" src={popularart} alt="" />
-
                     </div>
                     <div className="details">
-
                         <div >
                             <p className="featured">FEATURED ARTISTS</p>
-
                         </div>
                         <div>
                             <img className="artistP" src={artistphoto} alt="" />
@@ -157,10 +138,6 @@ function Home() {
                         </div>
                     </div>
                 </div>
-                <div className="container5">
-
-                </div>
-
             </div>
         </div>
     );
