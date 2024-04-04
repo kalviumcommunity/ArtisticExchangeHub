@@ -105,8 +105,11 @@ body {
     outline: none;
 }
 
-.input-group input:focus {
+.signinborder:focus {
     border: 0.125rem solid var(--primary-color);
+}
+.signupborder:focus {
+    border: 0.125rem solid var(--secondary-color);
 }
 .signup{
     cursor: pointer;
