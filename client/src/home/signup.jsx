@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie';  
 import './signu.css';
 
 const Signup = () => {
@@ -13,24 +14,24 @@ const Signup = () => {
     const [repeatPassword, setRepeatPassword] = useState("");
 
     const handleLogin = async (e) => {
+        e.preventDefault();
         try {
-            e.preventDefault();
             if (!signInUsername || !signInPassword) {
-                alert('Please enter your username and password');
+                setError('Please enter your username and password');
             } else {
                 const response = await axios.post(`https://s55-omjadhav-capstone-artisticexchangehub.onrender.com/login`, { username: signInUsername, password: signInPassword });
                 if (response.status === 200) {
-                    sessionStorage.setItem('login', true);
-                    sessionStorage.setItem('username', signInUsername);
-                    alert('Login successful');
+                    Cookies.set('login', true, { httpOnly: true }); // Set HTTP-only cookie
+                    Cookies.set('username', signInUsername, { httpOnly: true });
+                    setError('');
                     navigate('/');
                 } else {
-                    alert('Invalid user credentials');
+                    setError('Invalid user credentials');
                 }
             }
         } catch (err) {
             console.error(err);
-            alert('invalid user credentials')
+            setError('Invalid user credentials');
         }
     };
 
