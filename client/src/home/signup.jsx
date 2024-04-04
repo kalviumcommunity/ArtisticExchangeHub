@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie';  
 import './signu.css';
 
 const Signup = () => {
@@ -8,25 +9,54 @@ const Signup = () => {
     const [isSignIn, setIsSignIn] = useState(true);
     const [signInUsername, setSignInUsername] = useState('');
     const [signInPassword, setSignInPassword] = useState('');
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [repeatPassword, setRepeatPassword] = useState("");
 
     const handleLogin = async (e) => {
+        e.preventDefault();
         try {
-            e.preventDefault();
             if (!signInUsername || !signInPassword) {
-                alert('Please enter your username and password');
+                setError('Please enter your username and password');
             } else {
                 const response = await axios.post(`https://s55-omjadhav-capstone-artisticexchangehub.onrender.com/login`, { username: signInUsername, password: signInPassword });
                 if (response.status === 200) {
-                    sessionStorage.setItem('login', true);
-                    sessionStorage.setItem('username', signInUsername);
-                    alert('Login successful');
+                    Cookies.set('login', true, { httpOnly: true }); // Set HTTP-only cookie
+                    Cookies.set('username', signInUsername, { httpOnly: true });
+                    setError('');
                     navigate('/');
-                } else if (response.status === 401) {
-                    alert('Invalid user credentials');
+                } else {
+                    setError('Invalid user credentials');
                 }
             }
         } catch (err) {
             console.error(err);
+            setError('Invalid user credentials');
+        }
+    };
+
+    const handleSignup = async (e) => {
+        e.preventDefault();
+        try {
+            if (!username || !password || !repeatPassword) {
+                alert("Please fill in all fields");
+            } else if (password !== repeatPassword) {
+                alert("Passwords do not match");
+            } else if (password.length < 6) {
+                alert("Password should contain at least 6 characters");
+            } else {
+                const response = await axios.post(
+                    " https://s55-omjadhav-capstone-artisticexchangehub.onrender.com/signup",
+                    { username, password }
+                );
+                if (response.status === 200) {
+                    navigate("/");
+                    alert("Signup successful");
+                }
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Username already exists");
         }
     };
 
@@ -40,36 +70,48 @@ const Signup = () => {
                 {/* SIGN UP */}
                 <div className="col align-items-center flex-col sign-up">
                     <div className="form-wrapper align-items-center">
-                        <div className="form sign-up">
-                            <a className="logo">A R T I Q U E '</a>
-                            <div className="input-group">
-                                <i className='bx bxs-user'></i>
-                                <input className='signupborder' type="text" placeholder="Username" />
+                            <div className="form sign-up">
+                                <a className="logo">A R T I Q U E '</a>
+                                <div className="input-group">
+                                    <i className="bx bxs-user"></i>
+                                    <input
+                                        className="signupborder"
+                                        type="text"
+                                        placeholder="Username"
+                                        value={username}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                    />
+                                </div>
+                                <div className="input-group">
+                                    <i className="bx bxs-lock-alt"></i>
+                                    <input
+                                        className="signupborder"
+                                        type="password"
+                                        placeholder="Password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                    />
+                                </div>
+                                <div className="input-group">
+                                    <i className="bx bxs-lock-alt"></i>
+                                    <input
+                                        className="signupborder"
+                                        type="password"
+                                        placeholder="Confirm password"
+                                        value={repeatPassword}
+                                        onChange={(e) => setRepeatPassword(e.target.value)}
+                                    />
+                                </div>
+                                <button className="signup" onClick={handleSignup}>
+                                    Sign up
+                                </button>
+                                <p>
+                                    <span>Already have an account?</span>
+                                    <b onClick={toggle} className="pointer">
+                                        Sign up here
+                                    </b>
+                                </p>
                             </div>
-                            <div className="input-group">
-                                <i className='bx bx-mail-send'></i>
-                                <input className='signupborder' type="email" placeholder="Email" />
-                            </div>
-                            <div className="input-group">
-                                <i className='bx bxs-lock-alt'></i>
-                                <input className='signupborder' type="password" placeholder="Password" />
-                            </div>
-                            <div className="input-group">
-                                <i className='bx bxs-lock-alt'></i>
-                                <input className='signupborder' type="password" placeholder="Confirm password" />
-                            </div>
-                            <button className='signup' onClick={() => navigate('/')}>
-                                Sign up
-                            </button>
-                            <p>
-                                <span>
-                                    Already have an account?
-                                </span>
-                                <b onClick={toggle} className="pointer">
-                                    Sign in here
-                                </b>
-                            </p>
-                        </div>
                     </div>
                 </div>
 
@@ -122,6 +164,34 @@ const Signup = () => {
                 {/* END SIGN IN */}
             </div>
             {/* Additional content if needed */}
+            <div className="row content-row">
+                {/* SIGN IN CONTENT */}
+                <div className="col align-items-center flex-col">
+                    <div className="text sign-in">
+                        <h2>
+                            Welcome
+                        </h2>
+                    </div>
+                    <div className="img sign-in">
+                        {/* Sign in image or content */}
+                        {/* <img src={signinimg} alt="" /> */}
+                    </div>
+                </div>
+                {/* END SIGN IN CONTENT */}
+                {/* SIGN UP CONTENT */}
+                <div className="col align-items-center flex-col">
+                    <div className="img sign-up">
+                        {/* Sign up image or content */}
+                        {/* <img src={signinimg} alt="" /> */}
+                    </div>
+                    <div className="text sign-up">
+                        <h2>
+                            Join with us
+                        </h2>
+                    </div>
+                </div>
+                {/* END SIGN UP CONTENT */}
+            </div>
         </div>
     );
 };

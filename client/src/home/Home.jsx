@@ -44,8 +44,8 @@ function Home() {
                 </header>
                 <div className="title">
                     <div className="invest">INVEST IN ART THAT SPEAKS TO YOU.</div>
-                    <button className="title-button" onClick={() => navigate('/')}>
-                        <p className="getstart">GET STARTED</p>
+                    <button className="title-button" onClick={() => navigate('/signup')}>
+                        <p className="getstart "  >GET STARTED </p>
                     </button>
                 </div>
             </div>
@@ -137,6 +137,25 @@ function Home() {
                             <p className="descp">From the depths of shadow, a silver vessel erupts in a kaleidoscope of colorful blossoms.</p>
                         </div>
                     </div>
+                </div>
+                <div className="container5">
+                    <div>
+                        <p>Art <br />Gallery</p>
+                        <p>A R T I Q U E '</p>
+
+                    </div>
+                    <div className="artgallery">
+                        <img src="" alt="" />
+                        <img src="" alt="" />
+                        <img src="" alt="" />
+                        <img src="" alt="" />
+                        <img src="" alt="" />
+                        <img src="" alt="" />
+                        <img src="" alt="" />
+                        <img src="" alt="" />
+                        <img src="" alt="" />
+                    </div>
+                    
                 </div>
             </div>
         </div>
