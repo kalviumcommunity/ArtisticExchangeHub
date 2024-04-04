@@ -1,17 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './signu.css';
-// import signinimg from '../img/P1.jpeg'
 
 const Signup = () => {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const [isSignIn, setIsSignIn] = useState(true);
+    const [signInUsername, setSignInUsername] = useState('');
+    const [signInPassword, setSignInPassword] = useState('');
 
-    useEffect(() => {
-        setTimeout(() => {
-            setIsSignIn(true);
-        }, 200);
-    }, []);
+    const handleLogin = async (e) => {
+        try {
+            e.preventDefault();
+            if (!signInUsername || !signInPassword) {
+                alert('Please enter your username and password');
+            } else {
+                const response = await axios.post(`https://s55-omjadhav-capstone-artisticexchangehub.onrender.com/login`, { username: signInUsername, password: signInPassword });
+                if (response.status === 200) {
+                    sessionStorage.setItem('login', true);
+                    sessionStorage.setItem('username', signInUsername);
+                    alert('Login successful');
+                    navigate('/');
+                } else if (response.status === 401) {
+                    alert('Invalid user credentials');
+                }
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     const toggle = () => {
         setIsSignIn(!isSignIn);
@@ -19,13 +36,12 @@ const Signup = () => {
 
     return (
         <div id="container" className={`container ${isSignIn ? 'sign-in' : 'sign-up'}`}>
-            {/* FORM SECTION */}
             <div className="row">
                 {/* SIGN UP */}
                 <div className="col align-items-center flex-col sign-up">
                     <div className="form-wrapper align-items-center">
                         <div className="form sign-up">
-                            <a   className="logo">A R T I Q U E '</a>
+                            <a className="logo">A R T I Q U E '</a>
                             <div className="input-group">
                                 <i className='bx bxs-user'></i>
                                 <input className='signupborder' type="text" placeholder="Username" />
@@ -56,21 +72,35 @@ const Signup = () => {
                         </div>
                     </div>
                 </div>
+
                 {/* END SIGN UP */}
+
                 {/* SIGN IN */}
                 <div className="col align-items-center flex-col sign-in">
                     <div className="form-wrapper align-items-center">
                         <div className="form sign-in">
-                        <a   className="logo">A R T I Q U E '</a>
+                            <a className="logo">A R T I Q U E '</a>
                             <div className="input-group">
                                 <i className='bx bxs-user'></i>
-                                <input className='signinborder' type="text" placeholder="Username" />
+                                <input
+                                    className='signinborder'
+                                    type="text"
+                                    placeholder="Username"
+                                    value={signInUsername}
+                                    onChange={(e) => setSignInUsername(e.target.value)}
+                                />
                             </div>
                             <div className="input-group">
                                 <i className='bx bxs-lock-alt'></i>
-                                <input className='signinborder' type="password" placeholder="Password" />
+                                <input
+                                    className='signinborder'
+                                    type="password"
+                                    placeholder="Password"
+                                    value={signInPassword}
+                                    onChange={(e) => setSignInPassword(e.target.value)}
+                                />
                             </div>
-                            <button className='signin'>
+                            <button className='signin' onClick={handleLogin}>
                                 Sign in
                             </button>
                             <p>
@@ -88,46 +118,12 @@ const Signup = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="form-wrapper">
-                        {/* Additional content if needed */}
-                    </div>
                 </div>
                 {/* END SIGN IN */}
             </div>
-            {/* END FORM SECTION */}
-            {/* CONTENT SECTION */}
-            <div className="row content-row">
-                {/* SIGN IN CONTENT */}
-                <div className="col align-items-center flex-col">
-                    <div className="text sign-in">
-                        <h2>
-                            Welcome 
-                        </h2>
-                    </div>
-                    <div className="img sign-in">
-                        {/* Sign in image or content */}
-                        {/* <img src={signinimg} alt="" /> */}
-                    </div>
-                </div>
-                {/* END SIGN IN CONTENT */}
-                {/* SIGN UP CONTENT */}
-                <div className="col align-items-center flex-col">
-                    <div className="img sign-up">
-                        {/* Sign up image or content */}
-                        {/* <img src={signinimg} alt="" /> */}
-                    </div>
-                    <div className="text sign-up">
-                        <h2>
-                            Join with us
-                        </h2>
-                    </div>
-                </div>
-                {/* END SIGN UP CONTENT */}
-            </div>
-            {/* END CONTENT SECTION */}
+            {/* Additional content if needed */}
         </div>
     );
 };
 
 export default Signup;
-
