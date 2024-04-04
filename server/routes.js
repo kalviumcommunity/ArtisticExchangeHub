@@ -45,8 +45,8 @@ router.post('/signup',async(req,res)=>{
 })
 router.post('/login', async (req, res) => {
     try {
-        const { username, email, password } = req.body;
-        const user = await User.findOne({ username , email,password});
+        const { username, password } = req.body;
+        const user = await User.findOne({ username ,password});
         
         if (!user) {
             return res.status(401).json({ error: 'Invalid username / password' });
