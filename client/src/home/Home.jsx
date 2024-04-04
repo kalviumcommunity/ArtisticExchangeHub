@@ -7,6 +7,7 @@ import '../home/nav.css';
 import '../home/container2.css';
 import '../home/container3.css';
 import '../home/container4.css';
+import '../home/container5.css';
 import category1 from '../img/D1.jpeg';
 import category2 from '../img/D2.jpeg';
 import category3 from '../img/D3.jpeg';
@@ -139,23 +140,28 @@ function Home() {
                     </div>
                 </div>
                 <div className="container5">
-                    <div>
-                        <p>Art <br />Gallery</p>
-                        <p>A R T I Q U E '</p>
+                    <div className="nameart">
+                        <div className="nameartgallery">
 
+                            <p>Art <br />Gallery</p>
+                        </div>
+                        <div className="logonamep">
+
+                            <p>A R T I Q U E '</p>
+                        </div>
                     </div>
                     <div className="artgallery">
-                        <img src="" alt="" />
-                        <img src="" alt="" />
-                        <img src="" alt="" />
-                        <img src="" alt="" />
-                        <img src="" alt="" />
-                        <img src="" alt="" />
-                        <img src="" alt="" />
-                        <img src="" alt="" />
-                        <img src="" alt="" />
+                        <img src={category1} alt="" className="card" />
+                        <img src={category1} alt="" className="card" />
+                        <img src={category1} alt="" className="card" />
+                        <img src={category1} alt="" className="card" />
+                        <img src={category1} alt="" className="card" />
+                        <img src={category1} alt="" className="card" />
+                        <img src={category1} alt="" className="card" />
+                        <img src={category1} alt="" className="card" />
+                        <img src={category1} alt="" className="card" />
                     </div>
-                    
+
                 </div>
             </div>
         </div>

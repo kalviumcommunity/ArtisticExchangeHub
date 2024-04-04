@@ -14,24 +14,24 @@ const Signup = () => {
     const [repeatPassword, setRepeatPassword] = useState("");
 
     const handleLogin = async (e) => {
-        e.preventDefault();
         try {
+            e.preventDefault();
             if (!signInUsername || !signInPassword) {
-                setError('Please enter your username and password');
+                alert('Please enter your username and password');
             } else {
                 const response = await axios.post(`https://s55-omjadhav-capstone-artisticexchangehub.onrender.com/login`, { username: signInUsername, password: signInPassword });
                 if (response.status === 200) {
-                    Cookies.set('login', true, { httpOnly: true }); // Set HTTP-only cookie
-                    Cookies.set('username', signInUsername, { httpOnly: true });
-                    setError('');
+                    sessionStorage.setItem('login', true);
+                    sessionStorage.setItem('username', signInUsername);
+                    alert('Login successful');
                     navigate('/');
                 } else {
-                    setError('Invalid user credentials');
+                    alert('Invalid user credentials');
                 }
             }
         } catch (err) {
             console.error(err);
-            setError('Invalid user credentials');
+            alert('invalid user credentials')
         }
     };
 
