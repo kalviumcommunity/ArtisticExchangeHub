@@ -45,7 +45,7 @@ function Home() {
                 </header>
                 <div className="title">
                     <div className="invest">INVEST IN ART THAT SPEAKS TO YOU.</div>
-                    <button className="title-button" >
+                    <button   >
                         <p className="getstart "  >GET STARTED </p>
                     </button>
                 </div>
