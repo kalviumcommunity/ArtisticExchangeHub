@@ -8,6 +8,7 @@ import '../home/container2.css';
 import '../home/container3.css';
 import '../home/container4.css';
 import '../home/container5.css';
+import '../home/container6.css';
 import category1 from '../img/D1.jpeg';
 import category2 from '../img/D2.jpeg';
 import category3 from '../img/D3.jpeg';
@@ -39,13 +40,13 @@ function Home() {
                     </nav>
                     <div className="icons">
                         <i href="#" className="fa fa-sign-in" onClick={() => navigate('/signup')} id=""></i> {/* Use navigate for navigation */}
-                        <i className="fa fa-user" id="search-icon"></i>
+                        <i className="fa fa-user" id="search-icon" onClick={()=>navigate('/upload')}></i>
                         <i href="#" className="fa fa-shopping-cart"></i>
                     </div>
                 </header>
                 <div className="title">
                     <div className="invest">INVEST IN ART THAT SPEAKS TO YOU.</div>
-                    <button   >
+                    <button className="title-button" >
                         <p className="getstart "  >GET STARTED </p>
                     </button>
                 </div>
@@ -162,6 +163,19 @@ function Home() {
                         <img src={category1} alt="category1" className="card" />
                     </div>
 
+                </div>
+                <div className="container6">
+                    <div className="grid">
+
+                        <img src={category2} alt="" className="card2" />
+                        <img src={category2} alt="" className="card2" />
+                        <img src={category2} alt="" className="card2" />
+                        <img src={category2} alt="" className="card2" />
+                        <img src={category2} alt="" className="card2" />
+                        <img src={category2} alt="" className="card2" />
+                        <img src={category2} alt="" className="card2" />
+                        <img src={category2} alt="" className="card2" />
+                    </div>
                 </div>
             </div>
         </div>
