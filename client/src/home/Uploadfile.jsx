@@ -17,15 +17,7 @@ function UploadFile() {
   
   const [postImage, setPostImage] = useState( { myFile : ""})
   const MAX_FILE_SIZE = 5 * 1024 * 1024;
-
-  // const createPost = async (newImage) => {
-  //   try{
-  //     await axios.post(url, newImage)
-  //   }catch(error){
-  //     console.log(error)
-  //   }
-  // }
-
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
     // createPost(postImage)
