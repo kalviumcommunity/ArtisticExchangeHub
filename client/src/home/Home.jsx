@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import '../home/Home.css';
 import backgroundImage from '../img/background.png';
@@ -25,6 +25,12 @@ import artistphoto from '../img/popularartist.png';
 function Home() {
     const navigate = useNavigate(); // Use useNavigate for navigation
 
+    const id = sessionStorage.getItem("userID")
+
+    useEffect(()=>{
+        console.log("ID IS",id)
+    },[id])
+
     return (
         <div>
             <div className="container1">
@@ -40,7 +46,7 @@ function Home() {
                     </nav>
                     <div className="icons">
                         <i href="#" className="fa fa-sign-in" onClick={() => navigate('/signup')} id=""></i> {/* Use navigate for navigation */}
-                        <i className="fa fa-user" id="search-icon" onClick={()=>navigate('/upload')}></i>
+                        <i className="fa fa-user" id="search-icon" onClick={()=>navigate(`/upload/${id}`)}></i>
                         <i href="#" className="fa fa-shopping-cart"></i>
                     </div>
                 </header>

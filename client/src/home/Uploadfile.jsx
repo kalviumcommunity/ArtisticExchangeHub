@@ -1,28 +1,43 @@
 import { useState } from 'react'
-import avatar from '../img/D1.jpeg'
+import avatar from '../img/U.png'
 import './uploadfile.css'
+import {useParams} from 'react-router-dom'
 
 import axios from 'axios';
 
 
 const url = "http://localhost:8080/uploads"
 
-function App() {
+function UploadFile() {
+  const { id } = useParams()
+
+  const [userData, setUserData] = useState({
+    profile : ""
+  })
   
   const [postImage, setPostImage] = useState( { myFile : ""})
   const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
-  const createPost = async (newImage) => {
-    try{
-      await axios.post(url, newImage)
-    }catch(error){
-      console.log(error)
-    }
-  }
+  // const createPost = async (newImage) => {
+  //   try{
+  //     await axios.post(url, newImage)
+  //   }catch(error){
+  //     console.log(error)
+  //   }
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPost(postImage)
+    // createPost(postImage)
+
+    const fileU = axios.put(`http://localhost:3000/updateUser/${id}`,userData)
+    .then(fileU => {
+      console.log(fileU)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
     console.log("Uploaded")
   }
 
@@ -37,11 +52,18 @@ function App() {
   
     const base64 = await convertToBase64(file);
     console.log(base64);
+
+    setUserData({profile : base64})
+
+    
+   
+
     setPostImage({...postImage, myFile: base64 });
   };
 
   return (
     <div className="App">
+      {console.log("your arwe on uplaod")}
       <form onSubmit={handleSubmit}>
 
         <label htmlFor="file-upload" className='custom-file-upload'>
@@ -57,8 +79,8 @@ function App() {
           onChange={(e) => handleFileUpload(e)}
          />
 
-         <h3>Doris Wilder</h3>
-         <span>Designer</span>
+         {/* <h3>Doris Wilder</h3>
+         <span>Designer</span> */}
 
          <button type='submit'>Submit</button>
       </form>
@@ -66,7 +88,7 @@ function App() {
   )
 }
 
-export default App
+export default UploadFile
 
 
 function convertToBase64(file){

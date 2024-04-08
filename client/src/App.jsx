@@ -19,7 +19,7 @@ function App() {
           {/* <Route path="/login" element={<Login />} /> */}
           <Route path="/signup" element={< Signup />} />
 
-          <Route path="/upload" element={<Upload />} />
+          <Route path="/upload/:id" element={<Upload />} />
 
 
         </Routes>

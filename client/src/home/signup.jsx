@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';  
@@ -13,17 +13,37 @@ const Signup = () => {
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
 
+    const [id,setId] = useState("")
+
+    useEffect(()=>{
+        console.log(id)
+    },[id])
+
     const handleLogin = async (e) => {
         try {
             e.preventDefault();
             if (!signInUsername || !signInPassword) {
                 alert('Please enter your username and password');
             } else {
+                const passData = {
+                    "username" : signInUsername,
+                    "password" : signInPassword
+                }
                 const response = await axios.post(`https://s55-omjadhav-capstone-artisticexchangehub.onrender.com/login`, { username: signInUsername, password: signInPassword });
                 if (response.status === 200) {
                     sessionStorage.setItem('login', true);
                     sessionStorage.setItem('username', signInUsername);
                     alert('Login successful');
+                    const userdata = axios.post('http://localhost:3000/getID',passData)
+                    .then(userdata => {
+                        console.log(passData)
+                        console.log("USERDATA IS ",userdata)
+                        setId(userdata.data._id)
+                        sessionStorage.setItem("userID",userdata.data._id)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
                     navigate('/');
                 } else {
                     alert('Invalid user credentials');
