@@ -59,5 +59,31 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.put('/updateUser/:id', async (req, res) => {
+    const _id = req.params.id;
+    try {
+        const updatedUser = await User.findByIdAndUpdate({_id:_id}, req.body);
+        console.log(updatedUser)
+        res.json(updatedUser);
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err);
+    }
+});
+
+router.post('/getID', async (req,res) => {
+    const {username,password} = req.body
+    try {
+        const userID = await User.findOne({username,password});
+        console.log(userID)
+        res.json(userID);
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err);
+    }
+})
+
+
+
 
 module.exports = router

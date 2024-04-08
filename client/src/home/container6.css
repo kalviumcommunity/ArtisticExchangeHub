@@ -1,0 +1,19 @@
+.container6{
+    padding-top: 4vw;
+}
+
+.card2{
+    height: 24vw;
+    width: 24vw;
+}
+.grid{
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    row-gap: 1vw;
+    column-gap: 1vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding: auto;
+    grid-template-columns: repeat(4, 4fr);
+}

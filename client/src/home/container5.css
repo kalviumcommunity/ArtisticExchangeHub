@@ -1,0 +1,48 @@
+/* container5 */
+
+.container5 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 4vw;
+    gap: 2vw;
+
+}
+
+.nameart {
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.artgallery {
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    row-gap: 2rem;
+    column-gap: 2rem;
+}
+
+.card {
+    width: 14vw;
+    height: 14vw;
+    
+}
+
+.logonamep {
+    font-family: 'IM FELL Great Primer SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 4px;
+    line-height: 49px;
+
+}
+.nameartgallery{
+    font-family: 'Inika';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 5vw;
+    line-height: 91px;
+    gap: 2rem;
+
+}

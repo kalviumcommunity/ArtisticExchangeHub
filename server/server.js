@@ -18,3 +18,4 @@ app.listen(PORT, () => {
     database()
   console.log(`Server is running... ${PORT}`);
 });
+
