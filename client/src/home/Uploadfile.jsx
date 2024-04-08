@@ -30,7 +30,7 @@ function UploadFile() {
     e.preventDefault();
     // createPost(postImage)
 
-    const fileU = axios.put(`http://localhost:3000/updateUser/${id}`,userData)
+    const fileU = axios.put(`https://s55-omjadhav-capstone-artisticexchangehub.onrender.com/updateUser/${id}`,userData)
     .then(fileU => {
       console.log(fileU)
     })

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
+import { useNavigate } from 'react-router-dom';  
 import '../home/Home.css';
 import backgroundImage from '../img/background.png';
 import logo from '../img/logo.png';
@@ -23,7 +23,7 @@ import popularart from '../img/container4.png';
 import artistphoto from '../img/popularartist.png';
 
 function Home() {
-    const navigate = useNavigate(); // Use useNavigate for navigation
+    const navigate = useNavigate();  
 
     const id = sessionStorage.getItem("userID")
 
