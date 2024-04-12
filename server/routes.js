@@ -5,7 +5,11 @@ const mongoose = require('mongoose')
 const {getConnectionStatus} = require('./db.js')
 const {artmodle} = require('./schema.js')
 const {User}= require('./userschema.js')
-router.use(express.json());
+router.use(express.json({ limit: '500mb', extended: true }));
+const bodyParser = require('body-parser');
+
+router.use(bodyParser.json({ limit: '500mb' }));
+router.use(bodyParser.urlencoded);
 
 const cors = require('cors');
 // const User = require('./userschema.js');
