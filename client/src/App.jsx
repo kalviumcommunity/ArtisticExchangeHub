@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter ,Routes, Route } from 'react-router-dom';
 import Home from './home/Home'
 import './App.css'
-import Login from './profile/Profilescreen'
+// import Login from './profile/Profilescreen'
 import Upload from './home/Uploadfile'
 import Signup from './home/signup'
 import ProfileScreen from './profile/Profilescreen';
