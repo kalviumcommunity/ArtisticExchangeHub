@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useRef } from "react";
 import { useNavigate } from 'react-router-dom';  
 import '../home/Home.css';
 import backgroundImage from '../img/background.png';
@@ -24,12 +24,22 @@ import artistphoto from '../img/popularartist.png';
 
 function Home() {
     const navigate = useNavigate();  
+    const artRef= useRef(null)
+    const scrollToArt = () =>{
+        artRef.current.scrollIntoView({behavior : "smooth"})
+    };
+    const galleryRef= useRef(null)
+    const scrollToGallery = () =>{
+        galleryRef.current.scrollIntoView({behavior : "smooth" ,block:"start    "})
+    };
+
 
     const id = sessionStorage.getItem("userID")
 
     useEffect(()=>{
+        const id = sessionStorage.getItem("userID")
         console.log("ID IS",id)
-    },[id])
+    },[])
 
     return (
         <div>
@@ -38,15 +48,15 @@ function Home() {
                     <a href="#" className="logo">A R T I Q U E '</a>
                     <nav className="navbar">
                         <a className="active" href="#home">Home</a>
-                        <a href="">Art</a>
+                        <a href="#" onClick={scrollToArt}>Art</a>
                         <a href="">Search</a>
-                        <a href="">Gallery</a>
+                        <a href="#"onClick={scrollToGallery}>Gallery </a>
                         <a href="">Review</a>
                         <a href="">Order</a>
                     </nav>
                     <div className="icons">
-                        <i href="#" className="fa fa-sign-in" onClick={() => navigate('/signup')} id=""></i> {/* Use navigate for navigation */}
-                        <i className="fa fa-user" id="search-icon" onClick={()=>navigate(`/upload/${id}`)}></i>
+                        <i href="#" className="fa fa-user" onClick={() => navigate('/signup')} id=""></i> {/* Use navigate for navigation */}
+                        <i className="fa fa-sign-in" id="search-icon" onClick={()=>navigate(`/upload/${id}`)}></i>
                         <i href="#" className="fa fa-shopping-cart"></i>
                     </div>
                 </header>
@@ -58,7 +68,7 @@ function Home() {
                 </div>
             </div>
             <div className="main-container">
-                <div className="container2">
+                <div className="container2" ref={artRef}>
                     <div className="section-select">Find The Art You Like</div>
                     <div className="category">
                         <div>
@@ -129,7 +139,7 @@ function Home() {
                         </a>
                     </div>
                 </div>
-                <div className="container4">
+                <div className="container4" >
                     <div>
                         <img className="popular" src={popularart} alt="" />
                     </div>
@@ -146,7 +156,7 @@ function Home() {
                         </div>
                     </div>
                 </div>
-                <div className="container5">
+                <div className="container5"ref={galleryRef}>
                     <div className="nameart">
                         <div className="nameartgallery">
 
