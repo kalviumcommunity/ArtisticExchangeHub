@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+ @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 *{ margin: 0; padding: 0;}
 *, *::before, *::after {
@@ -141,7 +141,7 @@ body{
 }
 
 /* style-css */
-/* * {
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -803,4 +803,4 @@ body{
       -webkit-transform: rotate(360deg) translate(-10px) rotate(-360deg);
       transform: rotate(360deg) translate(-10px) rotate(-360deg);
     }
-  } */
+  } 
