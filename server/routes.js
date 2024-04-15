@@ -9,7 +9,7 @@ router.use(express.json({ limit: '500mb', extended: true }));
 const bodyParser = require('body-parser');
 
 router.use(bodyParser.json({ limit: '500mb' }));
-router.use(bodyParser.urlencoded);
+router.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require('cors');
 // const User = require('./userschema.js');
