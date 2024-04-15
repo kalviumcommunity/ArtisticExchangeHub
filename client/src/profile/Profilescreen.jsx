@@ -14,15 +14,11 @@ function ProfilePage() {
         </div>
         <div className="content__actions">
           <a href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-              {/* Path 1 */}
-            </svg>
+         
             <span>Connect</span>
           </a>
           <a href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-              {/* Path 2 */}
-            </svg>
+            
             <span>Message</span>
           </a>
         </div>
