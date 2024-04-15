@@ -53,7 +53,7 @@ function UploadFile() {
 
   return (
     <div className="App">
-      {console.log("your arwe on uplaod")}
+      {console.log("your photo is uplaoded")}
       <form onSubmit={handleSubmit}>
 
         <label htmlFor="file-upload" className='custom-file-upload'>
