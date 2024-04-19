@@ -8,17 +8,18 @@ const ImageComponent = () => {
 
   useEffect(() => {
     const fetchImages = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/images');   
-        setImages(response.data);
-        console.log(response.data);  
-      } catch (error) {
-        console.error('Error fetching images:', error);
-      }
+        try {
+            const response = await axios.get('http://localhost:3000/images');
+            setImages(response.data);
+        } catch (error) {
+            console.error('Error fetching images:', error);
+            setError('Failed to fetch images. Please try again later.');
+        }
     };
 
     fetchImages();
-  }, []);
+}, []);
+
 
   return (
     <div>
