@@ -1,5 +1,5 @@
-import React, { useEffect,useRef } from "react";
-import { useNavigate } from 'react-router-dom';  
+import React, { useEffect, useRef } from "react";
+import { useNavigate, Link } from 'react-router-dom';
 import '../home/Home.css';
 import backgroundImage from '../img/background.png';
 import logo from '../img/logo.png';
@@ -23,23 +23,23 @@ import popularart from '../img/container4.png';
 import artistphoto from '../img/popularartist.png';
 
 function Home() {
-    const navigate = useNavigate();  
-    const artRef= useRef(null)
-    const scrollToArt = () =>{
-        artRef.current.scrollIntoView({behavior : "smooth"})
+    const navigate = useNavigate();
+    const artRef = useRef(null)
+    const scrollToArt = () => {
+        artRef.current.scrollIntoView({ behavior: "smooth" })
     };
-    const galleryRef= useRef(null)
-    const scrollToGallery = () =>{
-        galleryRef.current.scrollIntoView({behavior : "smooth" ,block:"start    "})
+    const galleryRef = useRef(null)
+    const scrollToGallery = () => {
+        galleryRef.current.scrollIntoView({ behavior: "smooth", block: "start    " })
     };
 
 
     const id = sessionStorage.getItem("userID")
 
-    useEffect(()=>{
+    useEffect(() => {
         const id = sessionStorage.getItem("userID")
-        console.log("ID IS",id)
-    },[])
+        console.log("ID IS", id)
+    }, [])
 
     return (
         <div>
@@ -50,13 +50,13 @@ function Home() {
                         <a className="active" href="#home">Home</a>
                         <a href="#" onClick={scrollToArt}>Art</a>
                         <a href="">Search</a>
-                        <a href="#"onClick={scrollToGallery}>Gallery </a>
+                        <a href="#" onClick={scrollToGallery}>Gallery </a>
                         <a href="">Review</a>
                         <a href="">Order</a>
                     </nav>
                     <div className="icons">
                         <i href="#" className="fa fa-user" onClick={() => navigate('/signup')} id=""></i> {/* Use navigate for navigation */}
-                        <i className="fa fa-sign-in" id="search-icon" onClick={()=>navigate(`/upload/${id}`)}></i>
+                        <i className="fa fa-sign-in" id="search-icon" onClick={() => navigate(`/upload/${id}`)}></i>
                         <i href="#" className="fa fa-shopping-cart"></i>
                     </div>
                 </header>
@@ -72,8 +72,11 @@ function Home() {
                     <div className="section-select">Find The Art You Like</div>
                     <div className="category">
                         <div>
+                        <Link to="/image">
                             <img className="C1" src={category1} alt="" />
                             <p className="C-name">Oil</p>
+                        </Link>
+                            {/* <img className="C1" src={category1} alt="" /> */}
                         </div>
                         <div>
                             <img className="C2" src={category2} alt="" />
@@ -156,7 +159,7 @@ function Home() {
                         </div>
                     </div>
                 </div>
-                <div className="container5"ref={galleryRef}>
+                <div className="container5" ref={galleryRef}>
                     <div className="nameart">
                         <div className="nameartgallery">
 

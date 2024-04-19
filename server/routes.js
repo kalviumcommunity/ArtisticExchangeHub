@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const {getConnectionStatus} = require('./db.js')
 const {artmodle} = require('./schema.js')
 const {User}= require('./userschema.js')
+const Image = require('./ImageSchema.js');
 router.use(express.json({ limit: '500mb', extended: true }));
 const bodyParser = require('body-parser');
 
@@ -18,7 +19,15 @@ router.use(cors())
 router.get('/server',(req,res)=>{
     res.send('Server deployed')
 })
-
+// get request for oilpainting
+router.get('/images', async (req, res) => {
+    try {
+      const images = await Image.find();
+      res.json(images);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  });
 
 router.get('/db',async (req,res)=>{
     const status = await getConnectionStatus()
