@@ -76,6 +76,9 @@ router.post('/login', async (req, res) => {
     }
 });
 
+ 
+
+
 router.put('/updateUser/:id', async (req, res) => {
     const _id = req.params.id;
     try {
@@ -87,19 +90,6 @@ router.put('/updateUser/:id', async (req, res) => {
         res.status(500).json(err);
     }
 });
-
-router.post('/getID', async (req,res) => {
-    const {username,password} = req.body
-    try {
-        const userID = await User.findOne({username,password});
-        console.log(userID)
-        res.json(userID);
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err);
-    }
-})
-
 
 
 
