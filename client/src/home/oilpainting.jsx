@@ -25,7 +25,7 @@ const ImageComponent = () => {
   return (
     <div>
       {images && images.map(image => (
-        <img key={image._id} src={image.img} alt="Christmas Roses" />
+        <img key={image._id} src={image.img}  />
       ))}
     </div>
   );

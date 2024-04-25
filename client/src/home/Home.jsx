@@ -76,7 +76,7 @@ function Home() {
                             <img className="C1" src={category1} alt="" />
                             <p className="C-name">Oil</p>
                         </Link>
-                            {/* <img className="C1" src={category1} alt="" /> */}
+                           
                         </div>
                         <div>
                             <img className="C2" src={category2} alt="" />
