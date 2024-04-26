@@ -9,7 +9,7 @@ const ImageComponent = () => {
   useEffect(() => {
     const fetchImages = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/images');
+            const response = await axios.get('https://s55-omjadhav-capstone-artisticexchangehub.onrender.com/images');
             setImages(response.data);
         } catch (error) {
             console.error('Error fetching images:', error);
