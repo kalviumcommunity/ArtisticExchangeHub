@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const {getConnectionStatus} = require('./db.js')
 const {artmodle} = require('./schema.js')
 const {User}= require('./userschema.js')
+const Image = require('./ImageSchema.js');
 router.use(express.json({ limit: '500mb', extended: true }));
 const bodyParser = require('body-parser');
 
@@ -18,6 +19,18 @@ router.use(cors())
 router.get('/server',(req,res)=>{
     res.send('Server deployed')
 })
+// get request for oilpainting
+router.get('/images', async (req, res) => {
+    try {
+        const images = await Image.find();
+        if (images.length === 0) {
+            return res.status(404).json({ message: "No images found." });
+        }
+        res.json(images);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
 
 
 router.get('/db',async (req,res)=>{
@@ -53,7 +66,7 @@ router.post('/login', async (req, res) => {
         const user = await User.findOne({ username ,password});
         
         if (!user) {
-            return res.status(201).json({ error: 'Invalid username / password' });
+            return res.status(401).json({ error: 'Invalid username / password' });
         }
         res.status(200).json({ user });
         
@@ -62,6 +75,9 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+ 
+
 
 router.put('/updateUser/:id', async (req, res) => {
     const _id = req.params.id;
@@ -74,19 +90,6 @@ router.put('/updateUser/:id', async (req, res) => {
         res.status(500).json(err);
     }
 });
-
-router.post('/getID', async (req,res) => {
-    const {username,password} = req.body
-    try {
-        const userID = await User.findOne({username,password});
-        console.log(userID)
-        res.json(userID);
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err);
-    }
-})
-
 
 
 
