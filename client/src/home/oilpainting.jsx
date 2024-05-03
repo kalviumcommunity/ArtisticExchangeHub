@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const ImageComponent = () => {
   const [images, setImages] = useState([]);
-  const [error,setError]= useState([]);
+  const [error,setError]= useState("");
 
   useEffect(() => {
     const fetchImages = async () => {
