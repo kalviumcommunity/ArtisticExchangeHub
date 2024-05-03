@@ -1,10 +1,9 @@
-// ImageComponent.js
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const ImageComponent = () => {
   const [images, setImages] = useState([]);
+  const [error,setError]= useState([]);
 
   useEffect(() => {
     const fetchImages = async () => {
