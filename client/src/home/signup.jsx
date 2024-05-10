@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import Cookies from 'js-cookie';  
+import Cookies from 'js-cookie';
 import './signu.css';
 
 const Signup = () => {
@@ -13,11 +13,21 @@ const Signup = () => {
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
 
-    const [id,setId] = useState("")
+    const [id, setId] = useState("")
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(id)
-    },[id])
+    }, [id])
+
+    const handleAuth = async () => {
+        alert("SUCCCESSS")
+        const access = axios.post('http://localhost:3000/auth', { username: signInUsername, password: signInPassword })
+            .then(access => {
+                console.log(access)
+                document.cookie = "ACCESS_TOKEN=" + access.data.accessToken + "; expires=Thu, 22 Dec 2050 12:00:00 UTC; path=/"
+            })
+            .catch(err => console.log(err))
+    }
 
     const handleLogin = async (e) => {
         try {
@@ -26,24 +36,25 @@ const Signup = () => {
                 alert('Please enter your username and password');
             } else {
                 const passData = {
-                    "username" : signInUsername,
-                    "password" : signInPassword
+                    "username": signInUsername,
+                    "password": signInPassword
                 }
-                const response = await axios.post(`https://s55-omjadhav-capstone-artisticexchangehub.onrender.com/login`, { username: signInUsername, password: signInPassword });
+                const response = await axios.post(`https://s55-omjadhav-capstone-artisticexchangehub.onrender.com/login`, passData);
                 if (response.status === 200) {
+                    handleAuth()
                     sessionStorage.setItem('login', true);
                     sessionStorage.setItem('username', signInUsername);
                     alert('Login successful');
-                    const userdata = axios.post(`https://s55-omjadhav-capstone-artisticexchangehub.onrender.com/getID`,passData)
-                    .then(userdata => {
-                        console.log(passData)
-                        console.log("USERDATA IS ",userdata)
-                        setId(userdata.data._id)
-                        sessionStorage.setItem("userID",userdata.data._id)
-                    })
-                    .catch(err => {
-                        console.log(err)
-                    })
+                    const userdata = axios.post(`https://s55-omjadhav-capstone-artisticexchangehub.onrender.com/getID`, passData)
+                        .then(userdata => {
+                            console.log(passData)
+                            console.log("USERDATA IS ", userdata)
+                            setId(userdata.data._id)
+                            sessionStorage.setItem("userID", userdata.data._id)
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
                     navigate('/');
                 } else {
                     alert('Invalid user credentials');
@@ -90,48 +101,48 @@ const Signup = () => {
                 {/* SIGN UP */}
                 <div className="col align-items-center flex-col sign-up">
                     <div className="form-wrapper align-items-center">
-                            <div className="form sign-up">
-                                <a className="logo">A R T I Q U E '</a>
-                                <div className="input-group">
-                                    <i className="bx bxs-user"></i>
-                                    <input
-                                        className="signupborder"
-                                        type="text"
-                                        placeholder="Username"
-                                        value={username}
-                                        onChange={(e) => setUsername(e.target.value)}
-                                    />
-                                </div>
-                                <div className="input-group">
-                                    <i className="bx bxs-lock-alt"></i>
-                                    <input
-                                        className="signupborder"
-                                        type="password"
-                                        placeholder="Password"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                    />
-                                </div>
-                                <div className="input-group">
-                                    <i className="bx bxs-lock-alt"></i>
-                                    <input
-                                        className="signupborder"
-                                        type="password"
-                                        placeholder="Confirm password"
-                                        value={repeatPassword}
-                                        onChange={(e) => setRepeatPassword(e.target.value)}
-                                    />
-                                </div>
-                                <button className="signup" onClick={handleSignup}>
-                                    Sign up
-                                </button>
-                                <p>
-                                    <span>Already have an account?</span>
-                                    <b onClick={toggle} className="pointer">
-                                        Sign up here
-                                    </b>
-                                </p>
+                        <div className="form sign-up">
+                            <a className="logo">A R T I Q U E '</a>
+                            <div className="input-group">
+                                <i className="bx bxs-user"></i>
+                                <input
+                                    className="signupborder"
+                                    type="text"
+                                    placeholder="Username"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                />
                             </div>
+                            <div className="input-group">
+                                <i className="bx bxs-lock-alt"></i>
+                                <input
+                                    className="signupborder"
+                                    type="password"
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </div>
+                            <div className="input-group">
+                                <i className="bx bxs-lock-alt"></i>
+                                <input
+                                    className="signupborder"
+                                    type="password"
+                                    placeholder="Confirm password"
+                                    value={repeatPassword}
+                                    onChange={(e) => setRepeatPassword(e.target.value)}
+                                />
+                            </div>
+                            <button className="signup" onClick={handleSignup}>
+                                Sign up
+                            </button>
+                            <p>
+                                <span>Already have an account?</span>
+                                <b onClick={toggle} className="pointer">
+                                    Sign up here
+                                </b>
+                            </p>
+                        </div>
                     </div>
                 </div>
 
