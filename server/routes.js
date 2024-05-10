@@ -77,6 +77,9 @@ router.post('/login', async (req, res) => {
     }
 });
 
+ 
+
+
 router.put('/updateUser/:id', async (req, res) => {
     const _id = req.params.id;
     try {
@@ -88,7 +91,7 @@ router.put('/updateUser/:id', async (req, res) => {
         res.status(500).json(err);
     }
 });
-
+ 
 router.post('/getID', async (req,res) => {
     const {username,password} = req.body
     try {
@@ -116,5 +119,6 @@ router.post('/auth', async(req,res) => {
         console.log(err)
     }
 })
+ 
 
 module.exports = router

@@ -18,6 +18,7 @@ function UploadFile() {
   const [postImage, setPostImage] = useState( { myFile : ""})
   const MAX_FILE_SIZE = 5 * 1024 * 1024;
  
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
     // createPost(postImage)
@@ -33,7 +34,6 @@ function UploadFile() {
 
     console.log("Uploaded")
   }
-
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
   
