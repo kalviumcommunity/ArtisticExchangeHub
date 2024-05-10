@@ -24,7 +24,7 @@ const Signup = () => {
         const access = axios.post('http://localhost:3000/auth', { username: signInUsername, password: signInPassword })
             .then(access => {
                 console.log(access)
-                document.cookie = "ACCESS_TOKEN=" + access.data.accessToken + "; expires=Thu, 22 Dec 2050 12:00:00 UTC; path=/"
+                document.cookie = "ACCESS_TOKEN=" + access.data.accessToken + "; expires=Thu, 22 Dec 2050 12:00:00 UTC; path=/; HttpOnly; Secure"
             })
             .catch(err => console.log(err))
     }

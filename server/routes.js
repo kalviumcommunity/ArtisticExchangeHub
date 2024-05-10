@@ -108,8 +108,13 @@ router.post('/auth', async(req,res) => {
         "password" : password
     }
 
-    const ACCESS_TOKEN = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET)
-    res.json({"accessToken" : ACCESS_TOKEN})
+    try{
+        const ACCESS_TOKEN = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET)
+        res.json({"accessToken" : ACCESS_TOKEN})
+    }
+    catch(err){
+        console.log(err)
+    }
 })
 
 module.exports = router
