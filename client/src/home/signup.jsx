@@ -12,19 +12,47 @@ const Signup = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
+    const [googleAuth, setGoogleAuth] = useState("");
 
     const [id, setId] = useState("")
 
+
     useEffect(() => {
-        console.log(id)
-    }, [id])
+        const initGoogleSignIn = () => {
+            window.gapi.load('auth2', () => {
+                const auth2 = window.gapi.auth2.init({
+                    client_id: '905257784376-mocejr5rvb0n1scjap52mp5pep5k5cuf.apps.googleusercontent.com',
+                    scope: 'email',
+                });
+                setGoogleAuth(auth2); // Store Google Auth instance in state
+            });
+        };
+
+        initGoogleSignIn();
+    }, []);
+
+    const handleGoogleLogin = async () => {
+        try {
+            const googleUser = await googleAuth.signIn();
+            const profile = googleUser.getBasicProfile();
+            const email = profile.getEmail();
+            console.log('Logged in with Google:', email);
+
+        } catch (error) {
+            if (error.error === 'popup_closed_by_user') {
+                console.log('Google sign-in popup was closed by the user.');
+                navigate('/');
+            } else {
+                console.error('Google login failed:', error);
+            }
+        }
+    };
 
     const handleAuth = async () => {
-        alert("SUCCCESSS")
         const access = axios.post('http://localhost:3000/auth', { username: signInUsername, password: signInPassword })
             .then(access => {
                 console.log(access)
-                document.cookie = "ACCESS_TOKEN=" + access.data.accessToken + "; expires=Thu, 22 Dec 2050 12:00:00 UTC; path=/; HttpOnly; Secure"
+                document.cookie = "ACCESS_TOKEN=" + access.data.accessToken + "; expires=Thu, 22 Dec 2050 12:00:00 UTC; path=/"
             })
             .catch(err => console.log(err))
     }
@@ -43,7 +71,7 @@ const Signup = () => {
                 if (response.status === 200) {
                     handleAuth()
                     sessionStorage.setItem('login', true);
-                    sessionStorage.setItem('username', signInUsername);
+                    sessionStorage.setItem('username', signInUsername)
                     alert('Login successful');
                     const userdata = axios.post(`https://s55-omjadhav-capstone-artisticexchangehub.onrender.com/getID`, passData)
                         .then(userdata => {
@@ -175,6 +203,12 @@ const Signup = () => {
                             </div>
                             <button className='signin' onClick={handleLogin}>
                                 Sign in
+                            </button>
+                            {/* <button >
+                                GoogleSign in with Google
+                            </button> */}
+                            <button type="button" class="login-with-google-btn" onClick={handleGoogleLogin}>
+                                Sign in with Google
                             </button>
                             <p>
                                 <b>
