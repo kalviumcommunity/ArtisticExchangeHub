@@ -12,7 +12,7 @@ const Signup = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
-    const [googleAuth,setGoogleAuth] = useState("");
+    const [googleAuth, setGoogleAuth] = useState("");
 
     const [id, setId] = useState("")
 
@@ -37,7 +37,7 @@ const Signup = () => {
             const profile = googleUser.getBasicProfile();
             const email = profile.getEmail();
             console.log('Logged in with Google:', email);
-            
+
         } catch (error) {
             if (error.error === 'popup_closed_by_user') {
                 console.log('Google sign-in popup was closed by the user.');
@@ -204,8 +204,11 @@ const Signup = () => {
                             <button className='signin' onClick={handleLogin}>
                                 Sign in
                             </button>
-                            <button onClick={handleGoogleLogin}>
-                                google
+                            {/* <button >
+                                GoogleSign in with Google
+                            </button> */}
+                            <button type="button" class="login-with-google-btn" onClick={handleGoogleLogin}>
+                                Sign in with Google
                             </button>
                             <p>
                                 <b>
