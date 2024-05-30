@@ -8,6 +8,7 @@ const {User}= require('./userschema.js')
 const Image = require('./ImageSchema.js');
 router.use(express.json({ limit: '500mb', extended: true }));
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');  
 
 router.use(bodyParser.json({ limit: '500mb' }));
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -102,7 +103,34 @@ router.put('/updateUser/:id', async (req, res) => {
         res.status(500).json(err);
     }
 });
+ 
+router.post('/getID', async (req,res) => {
+    const {username,password} = req.body
+    try {
+        const userID = await User.findOne({username,password});
+        console.log(userID)
+        res.json(userID);
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err);
+    }
+})
 
+router.post('/auth', async(req,res) => {
+    const {username,password} = req.body
+    const user = {
+        "username" : username,
+        "password" : password
+    }
 
+    try{
+        const ACCESS_TOKEN = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET)
+        res.json({"accessToken" : ACCESS_TOKEN})
+    }
+    catch(err){
+        console.log(err)
+    }
+})
+ 
 
 module.exports = router
