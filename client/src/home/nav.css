@@ -1,0 +1,283 @@
+:root{
+    --green:#27ae60;
+    --black:#192a56;
+    --light-color:#666;
+    --box-shadow:0.5rem 1.5rem rgba(0,0,0,.1);
+}
+*{
+    font-family: 'Forum', serif;
+font-family: 'Kanit', sans-serif;
+font-family: 'Nunito Sans', sans-serif;
+margin: 0;
+padding: 0;
+text-decoration: none;
+outline: none;
+border: none;
+text-transform: capitalize;
+transition: all .2s linear;
+user-select: none;
+}
+html{
+    font-size: 63.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 5.5rem;
+    scroll-behavior: smooth;
+}
+section{
+    padding: 2rem 9%;
+}
+section:nth-child(even){
+    background: #eee;
+}
+.sub-heading{
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    padding-top: 5rem;
+
+}
+.heading{
+    text-align: center;
+    color: black;
+    font-size: 3rem;
+    padding-bottom: 2rem;
+    text-transform: uppercase;
+}
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    font-size: 1.7rem;
+    color: #fff;
+    background: black;
+    border-radius: .5rem;
+    cursor: pointer;
+    padding: .8rem 3rem ;
+
+}
+.btn:hover{
+    background: white;
+    letter-spacing: .1rem;
+}
+header{
+
+    top: 0; left: 0; right: 0; z-index: 1000;
+    background:transparent;
+    padding: 1rem 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* box-shadow: 0px 7px 17px 0px rgba(0, 0, 0, 0.3); */
+}
+header .logo{
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+
+header .logo i{
+    color: white;
+}
+
+
+header .navbar a{
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    color: white;
+    /* justify-content: space-between; */
+    margin-left: 3px;
+
+}
+header .navbar a.active,
+header .navbar a:hover{
+    color: #000000;
+    background: white;
+}
+
+header .icons i,
+header .icons a{
+    cursor: pointer;
+    margin-left: .5rem;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    width: 4.5rem;
+    text-align: center;
+    font-size: 1.7rem;
+    color: black;
+    border-radius: 50%;
+    background: #eee;
+
+}
+header .icons i:hover,
+header .icons a:hover{
+    color: #000000;
+    background: white;
+    transform: rotate(360deg);
+}
+
+header .icons #menu-bars{
+    display: none;
+}
+
+
+
+
+
+.button1 {
+    background-color: transparent;  
+    border: solid 2px white;
+    border-radius: 25px;
+    width: 10rem;
+    height: auto;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+  }
+  .button2 {
+    background:transparent;  
+    border: solid 2px white;
+    border-radius: 25px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+
+    display: inline-block;
+    font-size: 14px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width:991px){
+    html{
+        font-size: 55%;
+    }
+    header{
+        padding: 1rem 2rem;
+    }
+    section{
+        padding:   2rem;
+    }
+}
+@media(max-width:768px){
+    header .icons #menu-bars{
+        display: inline-block;
+    }
+    header .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: .1rem solid rgba(0,0,0,.2);
+        padding: 1rem;
+        clip-path: polygon(0 0,100% 0,100% 0, 0 0);
+    }
+    header .navbar.active{
+        clip-path: polygon(0 0,100% 0, 100% 100%, 0% 100%);
+    }
+    header .navbar a{
+        display: block;
+        padding: 1.5rem;
+        margin: 1rem;
+        font-size: 2rem;
+        background: #eee;
+    }
+    .home .home-slider .slide .content h3{
+         
+        font-size: 5rem;
+    }
+    
+    
+}
+@media(max-width:991px){
+    html{
+        font-size: 50%;
+    }
+    .dishes .box-container .box img{
+        height: auto;
+        width: 100%;
+    }
+    .modal{
+        height: 40%;
+        width: 30%;
+        /* margin-top: 50rem; */
+
+    }
+    
+   
+}
+@media only screen and (min-width : 150px) and (max-width : 780px)
+{
+	 
+	.search input
+	{
+		width: 50%;
+		margin: 0 auto;
+	}
+    .modal{
+        width: 50%;
+        margin-top: 60rem;
+    }
+
+}
+@media screen and (max-width: 500px) {
+    .input-box {
+      height: 66px;
+      margin: 0 8px;
+    }
+    .input-box i {
+      left: 12px;
+      font-size: 25px;
+    }
+    .input-box input {
+      padding: 0 112px 0 50px;
+    }
+    .input-box .button {
+      right: 12px;
+      font-size: 14px;
+      padding: 8px 18px;
+    }
+    .modal{
+        width: 60%;
+        height: 50%;
+        padding-left:6rem ;
+        margin-top: 20rem;
+    }
+    #back-button{
+        margin-left: -10rem;
+        position: absolute;
+         
+    }
+  }
+  @media screen and (max-width:1139px){
+    .modal{
+        top: 100rem;
+    }
+  }
