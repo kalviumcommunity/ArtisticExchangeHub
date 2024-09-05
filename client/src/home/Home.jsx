@@ -219,21 +219,24 @@ function Home() {
                         <img src={category1} alt="category1" className="card" />
                         <img src={category1} alt="category1" className="card" />
                         <img src={category1} alt="category1" className="card" />
-                        <img src={category1} alt="category1" className="card" />
-                        <img src={category1} alt="category1" className="card" />
-                        <img src={category1} alt="category1" className="card" />
                     </div>
                 </div>
                 <div className="container6">
-                    <div className="grid">
-                        <img src={category2} alt="" className="card2" />
-                        <img src={category2} alt="" className="card2" />
-                        <img src={category2} alt="" className="card2" />
-                        <img src={category2} alt="" className="card2" />
-                        <img src={category2} alt="" className="card2" />
-                        <img src={category2} alt="" className="card2" />
-                        <img src={category2} alt="" className="card2" />
-                        <img src={category2} alt="" className="card2" />
+                    <div className="section-select">Artist Profile</div>
+                    <div className="cards-list">
+                        {cards.map((card, index) => (
+                            <div className="card-item" key={index}>
+                                <div className="card-info">
+                                    <p>Name: {card.name}</p>
+                                    <p>Email: {card.email}</p>
+                                </div>
+                                <div className="card-action">
+                                    <Link to={`/profile/${card._id}`}>
+                                        <button className="profile-btn">View Profile</button>
+                                    </Link>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
