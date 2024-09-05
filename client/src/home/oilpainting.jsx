@@ -7,6 +7,7 @@ const ImageComponent = () => {
 
   useEffect(() => {
     const fetchImages = async () => {
+ 
       try {
         const response = await axios.get('https://s55-omjadhav-capstone-artisticexchangehub.onrender.com/images');
         setImages(response.data);
@@ -14,6 +15,7 @@ const ImageComponent = () => {
         console.error('Error fetching images:', error);
         setError('Failed to fetch images. Please try again later.');
       }
+ 
     };
 
     fetchImages();
@@ -23,7 +25,7 @@ const ImageComponent = () => {
   return (
     <div>
       {images && images.map(image => (
-        <img key={image._id} src={image.img} alt="Christmas Roses" />
+        <img key={image._id} src={image.img}  />
       ))}
     </div>
   );
