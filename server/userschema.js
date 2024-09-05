@@ -5,10 +5,9 @@ const mongoose = require('mongoose');
 
 const userSchema =  mongoose.Schema({
   email : String,
-  password : String,
   username : String,
-  profile : String,
-
+  password : String,
+  profile : String
 });
 
 const User = mongoose.model('user', userSchema);
