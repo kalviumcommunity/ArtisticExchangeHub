@@ -8,6 +8,7 @@ const {User}= require('./userschema.js')
 const Image = require('./ImageSchema.js');
 router.use(express.json({ limit: '500mb', extended: true }));
 const bodyParser = require('body-parser');
+router.use(bodyParser.json({ limit: '50mb' })); 
 const jwt = require('jsonwebtoken');  
 
 router.use(bodyParser.json({ limit: '500mb' }));
@@ -16,6 +17,44 @@ router.use(bodyParser.urlencoded({ extended: true }));
 const cors = require('cors');
 // const User = require('./userschema.js');
 router.use(cors())
+router.get('/user/:id',async(req,res)=>{
+    const {id} = req.params;
+    try{
+        const user = await User.findById(id);
+        res.status(201).json(user)
+    }catch(err){
+        console.log(err)
+        res.status(422).json(err)
+    }
+})
+
+router.put('/upload/:id', async (req, res) => {
+    const { id } = req.params;
+    const { profile } = req.body; 
+
+    if (!profile) {
+        return res.status(400).send("Profile picture is required");
+    }
+
+    try {
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+        
+        user.profile = profile;
+        await user.save();
+
+        // Ensure that only one response is sent
+        return res.status(200).json({ message: 'Profile picture updated successfully' });
+    } catch (err) {
+        console.error(err);
+        // Ensure that only one response is sent
+        return res.status(500).send("Server error");
+    }
+});
+
+
 
 router.get('/server',(req,res)=>{
     res.send('Server deployed')
@@ -64,12 +103,12 @@ router.post('/signup',async(req,res)=>{
 router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
-        const user = await User.findOne({ username ,password});
+        const user = await User.findOne({ username, password });
         
         if (!user) {
             return res.status(401).json({ error: 'Invalid username / password' });
         }
-        res.status(200).json({ user });
+        res.status(200).json({ user }); // Wrap user in an object
         
     } catch (err) {
         console.error(err);

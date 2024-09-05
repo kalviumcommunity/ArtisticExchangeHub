@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import '../home/Home.css';
 import backgroundImage from '../img/background.png';
 import logo from '../img/logo.png';
 import '../home/nav.css';
+import backgroundVideo from "../home/V4.mp4";
 import '../home/container2.css';
 import '../home/container3.css';
 import '../home/container4.css';
@@ -21,49 +22,94 @@ import profile3 from '../img/P3.jpeg';
 import profile4 from '../img/P4.jpeg';
 import popularart from '../img/container4.png';
 import artistphoto from '../img/popularartist.png';
+import axios from 'axios';
 
 function Home() {
     const navigate = useNavigate();
-    const artRef = useRef(null)
-    const scrollToArt = () => {
-        artRef.current.scrollIntoView({ behavior: "smooth" })
-    };
-    const galleryRef = useRef(null)
-    const scrollToGallery = () => {
-        galleryRef.current.scrollIntoView({ behavior: "smooth", block: "start    " })
-    };
-
-
-    const id = sessionStorage.getItem("userID")
+    const artRef = useRef(null);
+    const galleryRef = useRef(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [cards, setCards] = useState([]); // State to store artist cards
 
     useEffect(() => {
-        const id = sessionStorage.getItem("userID")
-        console.log("ID IS", id)
-    }, [])
+        const id = localStorage.getItem("userID");
+        if (id) {
+            console.log("ID IS", id);
+        }
+        setIsLoggedIn(true);
+        console.log("isLoggedIn", isLoggedIn);
+
+        // Fetch artist cards data
+        const fetchCards = async () => {
+            try {
+                const response = await axios.get("https://s55-omjadhav-capstone-artisticexchangehub.onrender.com/info");
+                setCards(response.data);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        fetchCards();
+    }, []);
+
+    const goToMakeYourProfile = () => {
+        navigate("/makeprofile");
+    };
+
+    const scrollToArt = () => {
+        artRef.current.scrollIntoView({ behavior: "smooth" });
+    };
+
+    const scrollToGallery = () => {
+        galleryRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem("login");
+        localStorage.removeItem("userID");
+        setIsLoggedIn(false);
+        navigate('/signup');
+    };
 
     return (
         <div>
             <div className="container1">
-                <header>
+                <video autoPlay muted loop id="background-video">
+                    <source src={backgroundVideo} type="video/mp4" />
+                    {/* Your browser does not support the video tag. */}
+                </video>
+                <header >
                     <a href="#" className="logo">A R T I Q U E '</a>
                     <nav className="navbar">
                         <a className="active" href="#home">Home</a>
                         <a href="#" onClick={scrollToArt}>Art</a>
-                        <a href="">Search</a>
+                        <a href="#">Search</a>
                         <a href="#" onClick={scrollToGallery}>Gallery </a>
-                        <a href="">Review</a>
-                        <a href="">Order</a>
+                        <a href="#">Review</a>
+                        <a href="#">Order</a>
                     </nav>
-                    <div className="icons">
-                        <i href="#" className="fa fa-user" onClick={() => navigate('/signup')} id=""></i> {/* Use navigate for navigation */}
-                        <i className="fa fa-sign-in" id="search-icon" onClick={() => navigate(`/upload/${id}`)}></i>
-                        <i href="#" className="fa fa-shopping-cart"></i>
+                    <div className="icons">{" "}
+                        <div className="icons">
+                            {isLoggedIn ? (
+                                <div>
+
+                                    <button className="auth-button" onClick={handleLogout}>Logout</button>
+                                    <button className="profile-button" onClick={() => navigate('/form')}>Profile</button>
+                                </div>
+
+                            ) : (
+                                <>
+                                    <button className="signup-button" onClick={() => navigate('/signup')}>Signup</button>
+                                    <button className="login-button" onClick={() => navigate('/login')}>Login</button>
+                                </>
+                            )}
+                        </div>
+
                     </div>
                 </header>
                 <div className="title">
                     <div className="invest">INVEST IN ART THAT SPEAKS TO YOU.</div>
-                    <button className="title-button" >
-                        <p className="getstart "  >GET STARTED </p>
+                    <button className="title-button">GET STARTED
                     </button>
                 </div>
             </div>
@@ -72,15 +118,14 @@ function Home() {
                     <div className="section-select">Find The Art You Like</div>
                     <div className="category">
                         <div>
-                        <Link to="/image">
-                            <img className="C1" src={category1} alt="" />
-                            <p className="C-name">Oil</p>
-                        </Link>
-                            {/* <img className="C1" src={category1} alt="" /> */}
+                            <Link to="/image">
+                                <img className="C1" src={category1} alt="" />
+                                <p className="C-name">Oil</p>
+                            </Link>
                         </div>
                         <div>
                             <img className="C2" src={category2} alt="" />
-                            <p className="C-name">Abstract </p>
+                            <p className="C-name">Abstract</p>
                         </div>
                         <div>
                             <img className="C3" src={category3} alt="" />
@@ -88,12 +133,11 @@ function Home() {
                         </div>
                         <div>
                             <img className="C4" src={category4} alt="" />
-                            <p className="C-name"> Landscape</p>
+                            <p className="C-name">Landscape</p>
                         </div>
                         <div>
                             <img className="C5" src={category5} alt="" />
-                            <p className="C-name">Real-life </p>
-
+                            <p className="C-name">Real-life</p>
                         </div>
                         <div>
                             <img className="C6" src={category6} alt="" />
@@ -142,19 +186,19 @@ function Home() {
                         </a>
                     </div>
                 </div>
-                <div className="container4" >
+                <div className="container4">
                     <div>
                         <img className="popular" src={popularart} alt="" />
                     </div>
                     <div className="details">
-                        <div >
+                        <div>
                             <p className="featured">FEATURED ARTISTS</p>
                         </div>
                         <div>
                             <img className="artistP" src={artistphoto} alt="" />
                         </div>
                         <div className="all-info">
-                            <p className="name-C" ><b>creator:</b> Christine Flynn </p>
+                            <p className="name-C"><b>creator:</b> Christine Flynn</p>
                             <p className="descp">From the depths of shadow, a silver vessel erupts in a kaleidoscope of colorful blossoms.</p>
                         </div>
                     </div>
@@ -162,11 +206,9 @@ function Home() {
                 <div className="container5" ref={galleryRef}>
                     <div className="nameart">
                         <div className="nameartgallery">
-
                             <p>Art <br />Gallery</p>
                         </div>
                         <div className="logonamep">
-
                             <p>A R T I Q U E '</p>
                         </div>
                     </div>
@@ -181,11 +223,9 @@ function Home() {
                         <img src={category1} alt="category1" className="card" />
                         <img src={category1} alt="category1" className="card" />
                     </div>
-
                 </div>
                 <div className="container6">
                     <div className="grid">
-
                         <img src={category2} alt="" className="card2" />
                         <img src={category2} alt="" className="card2" />
                         <img src={category2} alt="" className="card2" />
